@@ -1,0 +1,84 @@
+.wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.wrapper_points {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.points {
+  height: 2vw;
+  width: 2vw;
+  background-color: #1660b5;
+  border-radius: 5px;
+}
+
+/* Large desktops and laptops */
+@media (min-width: 1200px) {
+  .wrapper_points {
+    margin: 25px;
+  }
+}
+
+/* Landscape tablets and medium desktops */
+@media (min-width: 992px) and (max-width: 1199px) {
+  $size: 2.2vw;
+  .wrapper_points {
+    margin: 25px;
+  }
+
+  .points {
+    width: $size;
+    height: $size;
+  }
+}
+/* Portrait tablets and small desktops */
+@media (min-width: 768px) and (max-width: 991px) {
+  $size: 2vw;
+
+  .points {
+    width: $size;
+    height: $size;
+  }
+}
+/* Landscape phones and portrait tablets */
+@media (max-width: 767px) {
+  $size: 5vw;
+
+  .wrapper_points {
+    padding-left: 25px;
+  }
+
+  .points {
+    width: $size;
+    height: $size;
+  }
+}
+
+/* Portrait phones and smaller */
+@media (max-width: 480px) {
+  $size: 5vw;
+
+  .wrapper_points {
+    padding-left: 10px;
+  }
+
+  .points {
+    width: $size;
+    height: $size;
+  }
+}
+
+/* Landscape tablets and medium desktops */
+@media (min-width: 992px) and (max-width: 1199px) {
+}
+/* Portrait tablets and small desktops */
+@media (min-width: 768px) and (max-width: 991px) {
+}

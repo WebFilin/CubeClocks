@@ -1,0 +1,17 @@
+.wrapper {
+  padding: 0px 10px 0px 0px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.input {
+  height: 25px;
+}
+.title {
+  text-shadow: 0px 0px 1px black;
+  margin-top: 8px;
+  text-transform: uppercase;
+}
