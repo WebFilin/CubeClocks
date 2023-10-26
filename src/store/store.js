@@ -7,6 +7,10 @@ class Clocks {
     name: "",
     type: "",
   };
+
+  inputTimeValue = "";
+  inputDateValue = "";
+
   constructor() {
     makeAutoObservable(this);
   }
@@ -17,17 +21,36 @@ class Clocks {
   }
 
   handlerReset() {
-    this.isReset = false;
-    this.setValueCheced("", "");
+    this.isReset = true;
+    this.setValueChecked("", "");
+    this.setValueDateOrTime("", "");
   }
 
   handlerValueChecked(name, type) {
-    this.setValueCheced(name, type);
+    this.setValueChecked(name, type);
+    this.isReset = false;
   }
 
-  setValueCheced(name, type) {
+  handlerInputTimeValue(value) {
+    this.setValueDateOrTime(value, "");
+  }
+
+  handlerInputDataValue(value) {
+    this.setValueDateOrTime("", value);
+  }
+
+  handlerPressEnterInValue() {
+    this.isStart = true;
+  }
+
+  setValueChecked(name, type) {
     this.checkedTimeValue.name = name;
     this.checkedTimeValue.type = type;
+  }
+
+  setValueDateOrTime(time, data) {
+    this.inputTimeValue = time;
+    this.inputDataValue = data;
   }
 }
 

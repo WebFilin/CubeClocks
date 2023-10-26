@@ -5,7 +5,7 @@ import DisplayDrawing from "../DisplayDrawing";
 import Btn from "../UI/Btns/Btn";
 import store from "../../store/store";
 import { observer } from "mobx-react-lite";
-import ChangeInputTimeValue from "../ChangeInputTimeValue/ChangeInputTimeValue";
+import InputTimeWraper from "../InputTimeWraper";
 
 const Timer = () => {
   const [inputValue, setInputValue] = React.useState("");
@@ -49,7 +49,7 @@ const Timer = () => {
       />
 
       <div className={styles.input_wrapper}>
-        <ChangeInputTimeValue />
+        <InputTimeWraper />
       </div>
       <div className={styles.btns_wrapper}>
         <Btn funcClick={handllerStart} title={btnTitle} />

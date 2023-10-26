@@ -8,23 +8,12 @@ import { observer } from "mobx-react-lite";
 const CheckboxTimeValue = observer(() => {
   const currentValue = store.checkedTimeValue.name;
 
-  function handlerCheckboxChange(elem) {
-    const { name, type } = elem;
-    store.handlerValueChecked(name, type);
-  }
-
-  console.log(store.checkedTimeValue.name);
-
   return (
     <div className={styles.wrapper}>
       {valuesTimeForCheckbox.map((elem) => {
         return (
           <div key={elem.name}>
-            <Checkbox
-              isChecked={currentValue === elem.name}
-              value={elem}
-              handlerCheckbox={handlerCheckboxChange}
-            />
+            <Checkbox isChecked={currentValue === elem.name} value={elem} />
           </div>
         );
       })}

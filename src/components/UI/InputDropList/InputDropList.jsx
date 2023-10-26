@@ -1,22 +1,23 @@
 import React from "react";
-import styles from "./InputDropDown.module.scss";
-import presetTime from "../../../utils/constants/presetTime";
+import styles from "./InputDropList.module.scss";
+import presetTime from "../../../constants/presetTime";
+import store from "../../../store/store";
+import { observer } from "mobx-react-lite";
 
-function InputDropDown({
-  getValue,
-  type,
-  title,
-  onKeyDown,
-  clearValue,
-  valueInput,
-}) {
+const InputDropList = ({ name, type }) => {
+  function clearValue() {
+    if (store.inputTimeValue) {
+      store.setValueDateOrTime("", "");
+    }
+  }
+
   function handlerChange(e) {
-    getValue(e.target.value);
+    store.handlerInputTimeValue(e.target.value);
   }
 
   function handlerKeyPress(e) {
     if (e.key === "Enter") {
-      onKeyDown();
+      store.handlerPressEnterInValue();
     }
   }
 
@@ -29,7 +30,7 @@ function InputDropDown({
         onKeyPress={(e) => handlerKeyPress(e)}
         onClick={clearValue}
         type={type}
-        value={valueInput}
+        value={store.inputTimeValue}
       />
 
       {type === "numbers" && (
@@ -39,10 +40,9 @@ function InputDropDown({
           })}
         </datalist>
       )}
-
-      <span className={styles.title}> {title} </span>
+      <span className={styles.title}> {name} </span>
     </div>
   );
-}
+};
 
-export default InputDropDown;
+export default observer(InputDropList);

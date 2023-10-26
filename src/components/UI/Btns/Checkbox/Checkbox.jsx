@@ -1,8 +1,10 @@
 import styles from "./Checkbox.module.scss";
+import store from "../../../../store/store";
 
-function Checkbox({ isChecked, value, handlerCheckbox }) {
-  function handler(name) {
-    handlerCheckbox(name);
+function Checkbox({ isChecked, value }) {
+  function handler(elem) {
+    const { name, type } = elem;
+    store.handlerValueChecked(name, type);
   }
 
   return (
