@@ -1,8 +1,11 @@
 import React from "react";
 import styles from "./Timer.module.scss";
-import getTimeForMiliseconds from "../../utils/getTimeForMiliseconds/getTimeForMiliseconds";
+// import getTimeForMiliseconds from "../../utils/getTimeForMiliseconds/getTimeForMiliseconds";
 import DisplayDrawing from "../DisplayDrawing";
 import Btn from "../UI/Btns/Btn";
+import store from "../../store/store";
+import { observer } from "mobx-react-lite";
+import ChangeInputTimeValue from "../ChangeInputTimeValue/ChangeInputTimeValue";
 
 const Timer = () => {
   const [inputValue, setInputValue] = React.useState("");
@@ -18,7 +21,23 @@ const Timer = () => {
     second: 40,
   });
 
-  function handllerStart(params) {}
+  const [btnTitle, setBtnTitle] = React.useState("");
+
+  React.useEffect(() => {
+    if (store.isStart) {
+      setBtnTitle("Stop");
+    } else {
+      setBtnTitle("Start");
+    }
+  }, [store.isStart]);
+
+  function handllerStart() {
+    store.handleStartTimer();
+  }
+
+  function handlerRest() {
+    store.handlerReset();
+  }
 
   return (
     <div className={styles.wrapper}>
@@ -29,13 +48,15 @@ const Timer = () => {
         //   isMinute={isMinute}
       />
 
-      <div className={styles.input_wrapper}></div>
+      <div className={styles.input_wrapper}>
+        <ChangeInputTimeValue />
+      </div>
       <div className={styles.btns_wrapper}>
-        <Btn funcClick={handllerStart} value="Start" />
-        <Btn funcClick={""} value="Reset" />
+        <Btn funcClick={handllerStart} title={btnTitle} />
+        <Btn funcClick={handlerRest} title="Reset" />
       </div>
     </div>
   );
 };
 
-export default React.memo(Timer);
+export default observer(Timer);

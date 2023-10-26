@@ -1,14 +1,10 @@
 import styles from "./Btn.module.scss";
 
-function Btn({ funcClick, value }) {
-  function handlerCkick() {
-    funcClick();
-  }
-
+function Btn({ funcClick, title }) {
   return (
     <div className={styles.wrapper}>
-      <button className={styles.btn} onClick={() => handlerCkick()}>
-        {value}
+      <button className={styles.btn} onClick={() => funcClick()}>
+        {title}
       </button>
     </div>
   );

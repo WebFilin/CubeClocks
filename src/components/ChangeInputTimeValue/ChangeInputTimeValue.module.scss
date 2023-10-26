@@ -1,0 +1,29 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 25px;
+  flex-wrap: wrap;
+  position: relative;
+}
+
+.title_wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.title {
+  text-shadow: 0px 0px 1px black;
+  margin-top: 8px;
+  text-transform: uppercase;
+  font-size: 20px;
+}
+
+/* Landscape phones and portrait tablets */
+@media (max-width: 767px) {
+  .wrapper_inputs_date_and_time {
+    justify-content: center;
+    margin-top: 5px;
+  }
+}

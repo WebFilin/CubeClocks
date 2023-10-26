@@ -1,0 +1,15 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Portrait phones and smaller */
+@media (max-width: 480px) {
+  .wrapper {
+    align-items: flex-start;
+  }
+}
+/* Iphone 5 */
+@media (max-width: 320px) {
+}
