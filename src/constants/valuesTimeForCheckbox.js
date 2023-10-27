@@ -1,5 +1,5 @@
 const valuesTimeForCheckbox = [
-  { name: "data and time", type: "date_and_time" },
+  { name: "data and time", type: "date and time" },
   { name: "date", type: "date" },
   { name: "hour", type: "time" },
   { name: "minutes", type: "numbers" },

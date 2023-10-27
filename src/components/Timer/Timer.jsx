@@ -6,14 +6,9 @@ import Btn from "../UI/Btns/Btn";
 import store from "../../store/store";
 import { observer } from "mobx-react-lite";
 import InputTimeWraper from "../InputTimeWraper";
+import TimeCreation from "../TimeCreation";
 
 const Timer = () => {
-  const [inputValue, setInputValue] = React.useState("");
-
-  const [isDays, setIsDays] = React.useState(true);
-  const [isHour, setIsHour] = React.useState(true);
-  const [isMinute, setIsMinute] = React.useState(true);
-
   const [time, setTime] = React.useState({
     days: 10,
     hour: 20,
@@ -55,6 +50,7 @@ const Timer = () => {
         <Btn funcClick={handllerStart} title={btnTitle} />
         <Btn funcClick={handlerRest} title="Reset" />
       </div>
+      <TimeCreation />
     </div>
   );
 };

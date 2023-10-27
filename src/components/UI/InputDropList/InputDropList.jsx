@@ -4,15 +4,22 @@ import presetTime from "../../../constants/presetTime";
 import store from "../../../store/store";
 import { observer } from "mobx-react-lite";
 
-const InputDropList = ({ name, type }) => {
+const InputDropList = ({ title, type, handlerInputValue }) => {
+  const [inputValue, setInputValue] = React.useState("");
+
   function clearValue() {
-    if (store.inputTimeValue) {
+  
+    if (inputValue) {
       store.setValueDateOrTime("", "");
+      setInputValue("");
     }
   }
 
   function handlerChange(e) {
-    store.handlerInputTimeValue(e.target.value);
+    const value = e.target.value;
+
+    setInputValue(value);
+    handlerInputValue(value);
   }
 
   function handlerKeyPress(e) {
@@ -30,7 +37,7 @@ const InputDropList = ({ name, type }) => {
         onKeyPress={(e) => handlerKeyPress(e)}
         onClick={clearValue}
         type={type}
-        value={store.inputTimeValue}
+        value={inputValue}
       />
 
       {type === "numbers" && (
@@ -40,7 +47,7 @@ const InputDropList = ({ name, type }) => {
           })}
         </datalist>
       )}
-      <span className={styles.title}> {name} </span>
+      <span className={styles.title}> {title} </span>
     </div>
   );
 };
