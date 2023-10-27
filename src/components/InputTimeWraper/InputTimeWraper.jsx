@@ -15,17 +15,25 @@ const InputTimeWraper = () => {
     store.handlerInputTimeValue(value);
   }
 
+  function handlerInputSingleValue(value) {
+    store.handlerInputSingleValue(value);
+  }
+
   return (
     <div className={styles.wrapper}>
       <CheckboxTimeValue />
       {!store.isReset && (
         <>
           {type !== "date and time" && (
-            <InputDropList
-              title={name}
-              type={type}
-              handlerInputValue={handlerTime}
-            />
+            <>
+              {type !== "" && (
+                <InputDropList
+                  title={name}
+                  type={type}
+                  handlerInputValue={handlerInputSingleValue}
+                />
+              )}
+            </>
           )}
           {type === "date and time" && (
             <>

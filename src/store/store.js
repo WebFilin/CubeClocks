@@ -8,8 +8,12 @@ class Clocks {
     type: "",
   };
 
-  inputTimeValue = "";
-  inputDateValue = "";
+  inputTimeAndDate = {
+    time: "",
+    date: "",
+  };
+
+  inputSingleValue = "";
 
   constructor() {
     makeAutoObservable(this);
@@ -22,8 +26,8 @@ class Clocks {
 
   handlerReset() {
     this.isReset = true;
-    this.setValueChecked("", "");
-    this.setValueDateOrTime("", "");
+    this.setValueChecked("");
+    this.setValueDateOrTime("");
   }
 
   handlerValueChecked(name, type) {
@@ -32,11 +36,15 @@ class Clocks {
   }
 
   handlerInputTimeValue(value) {
-    this.setValueDateOrTime(value, "");
+    this.inputTimeAndDate.time = value;
   }
 
   handlerInputDataValue(value) {
-    this.setValueDateOrTime("", value);
+    this.inputTimeAndDate.date = value;
+  }
+
+  handlerInputSingleValue(value) {
+    this.inputSingleValue = value;
   }
 
   handlerPressEnterInValue() {

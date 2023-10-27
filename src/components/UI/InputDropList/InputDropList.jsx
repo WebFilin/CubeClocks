@@ -8,7 +8,6 @@ const InputDropList = ({ title, type, handlerInputValue }) => {
   const [inputValue, setInputValue] = React.useState("");
 
   function clearValue() {
-  
     if (inputValue) {
       store.setValueDateOrTime("", "");
       setInputValue("");
