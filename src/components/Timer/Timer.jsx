@@ -36,12 +36,7 @@ const Timer = () => {
 
   return (
     <div className={styles.wrapper}>
-      <DisplayDrawing
-        time={time}
-        //   isDays={isDays}
-        //   isHour={isHour}
-        //   isMinute={isMinute}
-      />
+      <DisplayDrawing />
 
       <div className={styles.input_wrapper}>
         <InputTimeWraper />

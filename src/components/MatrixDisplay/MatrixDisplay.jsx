@@ -3,9 +3,10 @@ import { v4 as uuidv4 } from "uuid";
 import styles from "./MatrixDisplay.module.scss";
 import Cube from "../Cube";
 import SetNumber from "../SetNumber/SetNumber";
+import { observer } from "mobx-react-lite";
 
 // eslint-disable-next-line react/prop-types
-const ClockDisplay = ({ valueNum }) => {
+const ClockDisplay = observer(({ valueNum }) => {
   const [matrixForDispl, setMatrixForDispl] = React.useState([]);
 
   React.useEffect(() => {
@@ -27,6 +28,6 @@ const ClockDisplay = ({ valueNum }) => {
       })}
     </div>
   );
-};
+});
 
-export default React.memo(ClockDisplay);
+export default ClockDisplay;
