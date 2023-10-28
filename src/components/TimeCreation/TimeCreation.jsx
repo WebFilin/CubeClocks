@@ -12,8 +12,11 @@ const TimeCreation = observer(() => {
 
     if (store.isStart) {
       timer = setInterval(() => {
-        createTime();
+        const currentTime = new Date();
+        createTime(currentTime);
       }, 1000);
+    } else {
+      clearInterval(timer);
     }
 
     return () => {
@@ -21,13 +24,7 @@ const TimeCreation = observer(() => {
     };
   }, [store.isStart]);
 
-  //   if (store.isStart) {
-  //     createTime();
-  //   }
-
-  function createTime() {
-    const currentDate = new Date();
-
+  function createTime(currentDate) {
     switch (store.checkedTimeValue.name) {
       case "data and time":
         createDateAndTime(inputDate, inputTime, currentDate);
@@ -106,9 +103,11 @@ function timeCalculation(currentTime, targetTime) {
   const minutes = date.getUTCMinutes();
   const seconds = date.getUTCSeconds();
 
-  console.log(diffTime);
-
-  splitValueTime(days, hours, minutes, seconds);
+  if (diffTime > 0) {
+    splitValueTime(days, hours, minutes, seconds);
+  } else {
+    store.handleStopTimer();
+  }
 }
 
 // Разбиваем время на значения для каждого экрана отдельно

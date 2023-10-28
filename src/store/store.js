@@ -41,6 +41,10 @@ class Clocks {
     this.setValueDateOrTime("");
   }
 
+  handleStopTimer() {
+    this.isStart = false;
+  }
+
   handlerValueChecked(name, type) {
     this.setValueChecked(name, type);
     this.isReset = false;
