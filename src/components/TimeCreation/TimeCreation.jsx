@@ -1,6 +1,7 @@
 import { observer } from "mobx-react-lite";
 import store from "../../store/store";
 import React from "react";
+import endTimes from "../../constants/endTime";
 
 const TimeCreation = observer(() => {
   const isRuning = store.isStart;
@@ -15,6 +16,10 @@ const TimeCreation = observer(() => {
         checkValueTime(currentTimeMilliseconds);
       }, 1000);
     } else {
+      clearInterval(tickInterval);
+    }
+
+    if (isReset) {
       clearInterval(tickInterval);
     }
 
@@ -50,85 +55,38 @@ const TimeCreation = observer(() => {
     }
 
     return () => clearInterval(tickInterval);
-  }, [isRuning]);
+  }, [isRuning, isReset]);
 
   function secondsHandler(seconds, currentTimeMilliseconds) {
     const targetDateTime = new Date(currentTimeMilliseconds + seconds * 1000);
-
-    timeCalculation(targetDateTime);
+    store.setTargetDate(targetDateTime);
   }
 
   function minutesHandler(minutes, currentTimeMilliseconds) {
     const targetDateTime = new Date(
       currentTimeMilliseconds + minutes * 60 * 1000
     );
-
-    timeCalculation(targetDateTime);
+    store.setTargetDate(targetDateTime);
   }
 
   // Создаем время из значений инпутов даты и часов
   function createDateAndTime(date, time) {
     if (date && time) {
       const targetDate = new Date(`${date} ${time}`);
-      timeCalculation(targetDate);
+      store.setTargetDate(targetDate);
     } else if (date) {
-      const targetDate = new Date(`${date} 00:00`);
-
-      timeCalculation(targetDate);
+      const targetDate = new Date(`${date} ${endTimes.endDay}`);
+      store.setTargetDate(targetDate);
     } else if (time) {
       const targetDate = new Date();
       const [hours, minutes] = time.split(":").map(Number);
 
       targetDate.setHours(hours, minutes, 0);
-
-      timeCalculation(targetDate);
+      store.setTargetDate(targetDate);
     }
   }
 
-  // Расчитываем разницу времени, получаем актуальные значения времени
-  function timeCalculation(targetDate) {
-    const baseDate = new Date();
-
-    const diffTime = targetDate - baseDate;
-
-    const days = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-    const hours = Math.floor(
-      (diffTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-    );
-    const minutes = Math.floor((diffTime % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((diffTime % (1000 * 60)) / 1000);
-
-    if (diffTime > 0) {
-      splitValueTime(days, hours, minutes, seconds);
-    } else {
-      store.handleStopTimer();
-    }
-  }
-
-  // Разбиваем время на значения для каждого экрана отдельно
-  function splitValueTime(days, hours, minutes, seconds) {
-    const splitNum = (value) => {
-      return value ? value.toString().split("").map(Number) : [];
-    };
-
-    const splitDays = splitNum(days);
-    const splitHour = splitNum(hours);
-    const splitMinute = splitNum(minutes);
-    const splitSecond = splitNum(seconds);
-
-    const splitedTime = {
-      days1: days <= 9 ? 0 : splitDays[0],
-      days2: days <= 9 ? days : splitDays[1],
-      hour1: hours <= 9 ? 0 : splitHour[0],
-      hour2: hours <= 9 ? hours : splitHour[1],
-      minute1: minutes <= 9 ? 0 : splitMinute[0],
-      minute2: minutes <= 9 ? minutes : splitMinute[1],
-      second1: seconds <= 9 ? 0 : splitSecond[0],
-      second2: seconds <= 9 ? seconds : splitSecond[1],
-    };
-
-    store.handlerSplitedTime(splitedTime);
-  }
+  return <></>;
 });
 
 export default TimeCreation;

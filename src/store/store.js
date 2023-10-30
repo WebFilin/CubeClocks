@@ -15,6 +15,15 @@ class Clocks {
 
   inputSingleValue = "";
 
+  targetDate = "";
+
+  valuesTime = {
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  };
+
   splitedTime = {
     days1: 0,
     days2: 0,
@@ -71,20 +80,36 @@ class Clocks {
     this.checkedTimeValue.type = type;
   }
 
+  setTargetDate(valueTargetDate) {
+    this.targetDate = valueTargetDate;
+  }
+
   setValueDateOrTime(time, data) {
     this.inputTimeValue = time;
     this.inputDataValue = data;
   }
 
-  handlerSplitedTime(timeValue) {
-    this.splitedTime.days1 = timeValue.days1;
-    this.splitedTime.days2 = timeValue.days2;
-    this.splitedTime.hour1 = timeValue.hour1;
-    this.splitedTime.hour2 = timeValue.hour2;
-    this.splitedTime.minute1 = timeValue.minute1;
-    this.splitedTime.minute2 = timeValue.minute2;
-    this.splitedTime.second1 = timeValue.second1;
-    this.splitedTime.second2 = timeValue.second2;
+  setValuesTime(timeValue) {
+    const { days, hours, minutes, seconds } = timeValue;
+
+    this.valuesTime.days = days;
+    this.valuesTime.hours = hours;
+    this.valuesTime.minutes = minutes;
+    this.valuesTime.seconds = seconds;
+  }
+
+  setSplitedTime(timeValue) {
+    const { days1, days2, hour1, hour2, minute1, minute2, second1, second2 } =
+      timeValue;
+
+    this.splitedTime.days1 = days1;
+    this.splitedTime.days2 = days2;
+    this.splitedTime.hour1 = hour1;
+    this.splitedTime.hour2 = hour2;
+    this.splitedTime.minute1 = minute1;
+    this.splitedTime.minute2 = minute2;
+    this.splitedTime.second1 = second1;
+    this.splitedTime.second2 = second2;
   }
 }
 

@@ -1,21 +1,15 @@
 import React from "react";
 import styles from "./Timer.module.scss";
-// import getTimeForMiliseconds from "../../utils/getTimeForMiliseconds/getTimeForMiliseconds";
 import DisplayDrawing from "../DisplayDrawing";
 import Btn from "../UI/Btns/Btn";
 import store from "../../store/store";
 import { observer } from "mobx-react-lite";
 import InputTimeWraper from "../InputTimeWraper";
 import TimeCreation from "../TimeCreation";
+import TimeCalculation from "../TimeCalculation";
+import SplitValueForDisplays from "../SplitValueForDisplays/SplitValueForDisplays";
 
 const Timer = () => {
-  const [time, setTime] = React.useState({
-    days: 10,
-    hour: 20,
-    minute: 30,
-    second: 40,
-  });
-
   const [btnTitle, setBtnTitle] = React.useState("");
 
   React.useEffect(() => {
@@ -46,6 +40,8 @@ const Timer = () => {
         <Btn funcClick={handlerRest} title="Reset" />
       </div>
       <TimeCreation />
+      <TimeCalculation />
+      <SplitValueForDisplays />
     </div>
   );
 };
