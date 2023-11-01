@@ -1,7 +1,6 @@
 .wrapper {
-  position: relative;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
 }
 
@@ -53,7 +52,7 @@
   $size: 5vw;
 
   .wrapper_points {
-    padding-left: 25px;
+    padding: 10px;
   }
 
   .points {
@@ -67,18 +66,11 @@
   $size: 5vw;
 
   .wrapper_points {
-    padding-left: 10px;
+    padding: 5px;
   }
 
   .points {
     width: $size;
     height: $size;
   }
-}
-
-/* Landscape tablets and medium desktops */
-@media (min-width: 992px) and (max-width: 1199px) {
-}
-/* Portrait tablets and small desktops */
-@media (min-width: 768px) and (max-width: 991px) {
 }

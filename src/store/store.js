@@ -3,6 +3,7 @@ import { makeAutoObservable } from "mobx";
 class Clocks {
   isStart = false;
   isReset = false;
+
   checkedTimeValue = {
     name: "",
     type: "",

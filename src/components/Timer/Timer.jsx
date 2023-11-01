@@ -12,13 +12,15 @@ import SplitValueForDisplays from "../SplitValueForDisplays/SplitValueForDisplay
 const Timer = () => {
   const [btnTitle, setBtnTitle] = React.useState("");
 
+  const { isStart } = store.isStart;
+
   React.useEffect(() => {
-    if (store.isStart) {
+    if (isStart) {
       setBtnTitle("Stop");
     } else {
       setBtnTitle("Start");
     }
-  }, [store.isStart]);
+  }, [isStart]);
 
   function handllerStart() {
     store.handleStartTimer();

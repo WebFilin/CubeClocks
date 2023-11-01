@@ -47,3 +47,23 @@ $width: 25px;
   margin-top: 8px;
   text-transform: uppercase;
 }
+
+/* Portrait phones and smaller */
+@media (max-width: 480px) {
+  .wrapper {
+    margin: 0px 5px 0px 5px;
+  }
+  .title {
+    font-size: 14px;
+  }
+}
+/* Iphone 5 */
+@media (max-width: 320px) {
+  .wrapper {
+    margin: 0px 5px 0px 5px;
+  }
+
+  .title {
+    font-size: 14px;
+  }
+}

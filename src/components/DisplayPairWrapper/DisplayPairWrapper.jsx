@@ -3,8 +3,6 @@ import styles from "./DisplayPairWrapper.module.scss";
 import MatrixDisplay from "../MatrixDisplay";
 import DotterSplit from "../DotterSplit/DotterSplit";
 
-
-
 function DisplayPairWrapper({ value, title, isDotter }) {
   const [numbersValue, setNumbersValue] = React.useState([0, 0]);
 

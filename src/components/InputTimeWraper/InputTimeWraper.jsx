@@ -4,7 +4,7 @@ import { observer } from "mobx-react-lite";
 import InputDropList from "../UI/InputDropList";
 import store from "../../store/store";
 
-const InputTimeWraper = () => {
+const InputTimeWraper = observer(() => {
   const { name, type } = store.checkedTimeValue;
 
   function handlerData(value) {
@@ -21,38 +21,43 @@ const InputTimeWraper = () => {
 
   return (
     <div className={styles.wrapper}>
-      <CheckboxTimeValue />
-      {!store.isReset && (
-        <>
-          {type !== "date and time" && (
+      <div className={styles.checkbox_wrapper}>
+        <CheckboxTimeValue />
+
+        <div className={styles.inputs_wrapper}>
+          {!store.isReset && (
             <>
-              {type !== "" && (
-                <InputDropList
-                  title={name}
-                  type={type}
-                  handlerInputValue={handlerInputSingleValue}
-                />
+              {type !== "date and time" && (
+                <>
+                  {type !== "" && (
+                    <InputDropList
+                      title={name}
+                      type={type}
+                      handlerInputValue={handlerInputSingleValue}
+                    />
+                  )}
+                </>
+              )}
+              {type === "date and time" && (
+                <>
+                  <InputDropList
+                    title="date"
+                    type="date"
+                    handlerInputValue={handlerData}
+                  />
+                  <InputDropList
+                    title="time"
+                    type="time"
+                    handlerInputValue={handlerTime}
+                  />
+                </>
               )}
             </>
           )}
-          {type === "date and time" && (
-            <>
-              <InputDropList
-                title="date"
-                type="date"
-                handlerInputValue={handlerData}
-              />
-              <InputDropList
-                title="time"
-                type="time"
-                handlerInputValue={handlerTime}
-              />
-            </>
-          )}
-        </>
-      )}
+        </div>
+      </div>
     </div>
   );
-};
+});
 
-export default observer(InputTimeWraper);
+export default InputTimeWraper;
