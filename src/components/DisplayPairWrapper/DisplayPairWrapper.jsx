@@ -2,24 +2,18 @@ import React from "react";
 import styles from "./DisplayPairWrapper.module.scss";
 import MatrixDisplay from "../MatrixDisplay";
 import DotterSplit from "../DotterSplit/DotterSplit";
-function DisplayPairWrapper({ value }) {
-  const [isStyle, setIsStyle] = React.useState(styles.display_base);
 
-  //   React.useEffect(() => {
-  //     if (!isDotter) {
-  //       setIsStyle(styles.display_noDotter);
-  //     }
-  //   }, [isDotter]);
-
+// eslint-disable-next-line react/prop-types
+function DisplayPairWrapper({ value, title, isDotter }) {
   return (
     <div className={styles.wrapper}>
-      <div className={isStyle}>
-        {/* <MatrixDisplay valueNum={value1} /> */}
-        {/* <MatrixDisplay valueNum={value2} /> */}
+      <div className={styles.display_body}>
+        <MatrixDisplay valueNum={value[0]} />
+        <MatrixDisplay valueNum={value[1]} />
 
-        {/* {isDotter && <DotterSplit />} */}
+        {isDotter && <DotterSplit />}
       </div>
-      <div className={styles.title_display}>{value } </div>
+      <div className={styles.title_display}>{title} </div>
     </div>
   );
 }

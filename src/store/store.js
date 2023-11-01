@@ -24,7 +24,7 @@ class Clocks {
     seconds: 0,
   };
 
-  splitedTime = {};
+  splitedTime = { days: [], hours: [], minutes: [], seconds: [] };
 
   constructor() {
     makeAutoObservable(this);

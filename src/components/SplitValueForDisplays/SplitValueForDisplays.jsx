@@ -8,25 +8,21 @@ const SplitValueForDisplays = observer(() => {
 
   React.useEffect(() => {
     const splitNum = (value) => {
-      return value ? value.toString().split("").map(Number) : [];
+      return value ? value.toString().split("").map(Number) : 0;
     };
 
-    const splitDays = splitNum(days);
-    const splitHour = splitNum(hours);
-    const splitMinute = splitNum(minutes);
-    const splitSecond = splitNum(seconds);
+    const splitValue = (value) => {
+      const splitArr = splitNum(value);
+      const firstDigit = value <= 9 ? 0 : splitArr[0];
+      const secondDigit = value <= 9 ? value : splitArr[1];
+      return [firstDigit, secondDigit];
+    };
 
     const splitedTime = {
-      days: [days <= 9 ? 0 : splitDays[0], days <= 9 ? days : splitDays[1]],
-      hours: [hours <= 9 ? 0 : splitHour[0], hours <= 9 ? 0 : splitHour[1]],
-      minutes: [
-        minutes <= 9 ? 0 : splitMinute[0],
-        minutes <= 9 ? 0 : splitMinute[1],
-      ],
-      seconds: [
-        seconds <= 9 ? 0 : splitSecond[0],
-        seconds <= 9 ? 0 : splitSecond[1],
-      ],
+      days: splitValue(days),
+      hours: splitValue(hours),
+      minutes: splitValue(minutes),
+      seconds: splitValue(seconds),
     };
 
     store.setSplitedTime(splitedTime);
