@@ -17,14 +17,16 @@ const SplitValueForDisplays = observer(() => {
     const splitSecond = splitNum(seconds);
 
     const splitedTime = {
-      days1: days <= 9 ? 0 : splitDays[0],
-      days2: days <= 9 ? days : splitDays[1],
-      hour1: hours <= 9 ? 0 : splitHour[0],
-      hour2: hours <= 9 ? hours : splitHour[1],
-      minute1: minutes <= 9 ? 0 : splitMinute[0],
-      minute2: minutes <= 9 ? minutes : splitMinute[1],
-      second1: seconds <= 9 ? 0 : splitSecond[0],
-      second2: seconds <= 9 ? seconds : splitSecond[1],
+      days: [days <= 9 ? 0 : splitDays[0], days <= 9 ? days : splitDays[1]],
+      hours: [hours <= 9 ? 0 : splitHour[0], hours <= 9 ? 0 : splitHour[1]],
+      minutes: [
+        minutes <= 9 ? 0 : splitMinute[0],
+        minutes <= 9 ? 0 : splitMinute[1],
+      ],
+      seconds: [
+        seconds <= 9 ? 0 : splitSecond[0],
+        seconds <= 9 ? 0 : splitSecond[1],
+      ],
     };
 
     store.setSplitedTime(splitedTime);

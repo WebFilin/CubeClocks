@@ -24,16 +24,7 @@ class Clocks {
     seconds: 0,
   };
 
-  splitedTime = {
-    days1: 0,
-    days2: 0,
-    hour1: 0,
-    hour2: 0,
-    minute1: 0,
-    minute2: 0,
-    second1: 0,
-    second2: 0,
-  };
+  splitedTime = {};
 
   constructor() {
     makeAutoObservable(this);
@@ -99,17 +90,7 @@ class Clocks {
   }
 
   setSplitedTime(timeValue) {
-    const { days1, days2, hour1, hour2, minute1, minute2, second1, second2 } =
-      timeValue;
-
-    this.splitedTime.days1 = days1;
-    this.splitedTime.days2 = days2;
-    this.splitedTime.hour1 = hour1;
-    this.splitedTime.hour2 = hour2;
-    this.splitedTime.minute1 = minute1;
-    this.splitedTime.minute2 = minute2;
-    this.splitedTime.second1 = second1;
-    this.splitedTime.second2 = second2;
+    this.splitedTime = timeValue;
   }
 }
 
