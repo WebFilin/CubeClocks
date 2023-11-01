@@ -1,21 +1,31 @@
 import React from "react";
 import styles from "./DisplayDrawing.module.scss";
-// import useMatchMedia from "../../hooks/useMatchMedia";
-
 import store from "../../store/store";
 import { observer } from "mobx-react-lite";
 import DisplayPairWrapper from "../DisplayPairWrapper";
 import useDisplayPairVisibility from "../../hooks/useDisplayPairVisibility";
+import useDotterSplitVisibility from "../../hooks/useDotterSplitVisibility/useDotterSplitVisibility";
+import useMachMedia from "../../hooks/useMatchMedia";
 
 const DisplayDrawing = observer(() => {
   const { splitedDays, splitedHours, splitedMinutes, splitedSeconds } =
     store.splitedTime;
 
+  const displRef = React.useRef();
+
   const { isDays, isHour, isMinute } = useDisplayPairVisibility();
+
+  const { isMobile, isTablet } = useMachMedia();
+
+  const { isHourDotter, isMinuteDotter } = useDotterSplitVisibility(
+    displRef,
+    isMobile,
+    isTablet
+  );
 
   return (
     <div className={styles.wrapper}>
-      <div className={styles.displays_body}>
+      <div ref={displRef} className={styles.displays_body}>
         {isDays && (
           <DisplayPairWrapper
             value={splitedDays}
@@ -27,7 +37,7 @@ const DisplayDrawing = observer(() => {
           <DisplayPairWrapper
             value={splitedHours}
             title="hours"
-            isDotter={true}
+            isDotter={isHourDotter}
           />
         )}
 
@@ -35,7 +45,7 @@ const DisplayDrawing = observer(() => {
           <DisplayPairWrapper
             value={splitedMinutes}
             title="minutes"
-            isDotter={true}
+            isDotter={isMinuteDotter}
           />
         )}
 
@@ -44,8 +54,6 @@ const DisplayDrawing = observer(() => {
           title="seconds"
           isDotter={false}
         />
-
-        <div className={styles.wrapper_display}></div>
       </div>
     </div>
   );
