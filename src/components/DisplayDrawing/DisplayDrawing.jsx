@@ -5,17 +5,45 @@ import styles from "./DisplayDrawing.module.scss";
 import store from "../../store/store";
 import { observer } from "mobx-react-lite";
 import DisplayPairWrapper from "../DisplayPairWrapper";
+import useDisplayPairVisibility from "../../hooks/useDisplayPairVisibility";
 
 const DisplayDrawing = observer(() => {
-  const { days, hours, minutes, seconds } = store.splitedTime;
+  const { splitedDays, splitedHours, splitedMinutes, splitedSeconds } =
+    store.splitedTime;
+
+  const { isDays, isHour, isMinute } = useDisplayPairVisibility();
 
   return (
     <div className={styles.wrapper}>
       <div className={styles.displays_body}>
-        <DisplayPairWrapper value={days} title="days" isDotter={true} />
-        <DisplayPairWrapper value={hours} title="hours" isDotter={true} />
-        <DisplayPairWrapper value={minutes} title="minutes" isDotter={true} />
-        <DisplayPairWrapper value={seconds} title="seconds" isDotter={false} />
+        {isDays && (
+          <DisplayPairWrapper
+            value={splitedDays}
+            title="days"
+            isDotter={true}
+          />
+        )}
+        {isHour && (
+          <DisplayPairWrapper
+            value={splitedHours}
+            title="hours"
+            isDotter={true}
+          />
+        )}
+
+        {isMinute && (
+          <DisplayPairWrapper
+            value={splitedMinutes}
+            title="minutes"
+            isDotter={true}
+          />
+        )}
+
+        <DisplayPairWrapper
+          value={splitedSeconds}
+          title="seconds"
+          isDotter={false}
+        />
 
         <div className={styles.wrapper_display}></div>
       </div>

@@ -18,10 +18,10 @@ class Clocks {
   targetDate = "";
 
   valuesTime = {
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0,
+    days: null,
+    hours: null,
+    minutes: null,
+    seconds: null,
   };
 
   splitedTime = { days: [], hours: [], minutes: [], seconds: [] };

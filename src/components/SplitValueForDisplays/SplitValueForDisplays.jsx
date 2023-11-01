@@ -8,7 +8,7 @@ const SplitValueForDisplays = observer(() => {
 
   React.useEffect(() => {
     const splitNum = (value) => {
-      return value ? value.toString().split("").map(Number) : 0;
+      return value ? value.toString().split("").map(Number) : {};
     };
 
     const splitValue = (value) => {
@@ -19,10 +19,10 @@ const SplitValueForDisplays = observer(() => {
     };
 
     const splitedTime = {
-      days: splitValue(days),
-      hours: splitValue(hours),
-      minutes: splitValue(minutes),
-      seconds: splitValue(seconds),
+      splitedDays: splitValue(days),
+      splitedHours: splitValue(hours),
+      splitedMinutes: splitValue(minutes),
+      splitedSeconds: splitValue(seconds),
     };
 
     store.setSplitedTime(splitedTime);
