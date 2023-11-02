@@ -27,6 +27,8 @@ class Clocks {
 
   splitedTime = { days: [], hours: [], minutes: [], seconds: [] };
 
+  error = "";
+
   constructor() {
     makeAutoObservable(this);
   }
@@ -40,6 +42,14 @@ class Clocks {
     this.isReset = true;
     this.setValueChecked("");
     this.setValueDateOrTime("");
+    this.handlerErrors("");
+
+    this.valuesTime.days = null;
+    this.valuesTime.hours = null;
+    this.valuesTime.minutes = null;
+    this.valuesTime.seconds = null;
+
+    this.isStart = false;
   }
 
   handleStopTimer() {
@@ -92,6 +102,10 @@ class Clocks {
 
   setSplitedTime(timeValue) {
     this.splitedTime = timeValue;
+  }
+
+  handlerErrors(error) {
+    this.error = error;
   }
 }
 

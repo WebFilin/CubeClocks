@@ -1,19 +1,24 @@
 import { observer } from "mobx-react-lite";
-import store from "../../store/store";
 import React from "react";
+import store from "../../store/store";
 import endTimes from "../../constants/endTime";
+import errorMessages from "../../constants/errorsMesages";
 
 const TimeCreation = observer(() => {
-  const isRuning = store.isStart;
-  const isReset = store.isReset;
+  const {
+    isStart,
+    isReset,
+    inputTimeAndDate,
+    inputSingleValue,
+    checkedTimeValue,
+  } = store;
 
   React.useEffect(() => {
     let tickInterval;
-    const currentTimeMilliseconds = Date.now();
 
-    if (isRuning) {
+    if (isStart) {
       tickInterval = setInterval(() => {
-        checkValueTime(currentTimeMilliseconds);
+        checkValueTime();
       }, 1000);
     } else {
       clearInterval(tickInterval);
@@ -23,53 +28,77 @@ const TimeCreation = observer(() => {
       clearInterval(tickInterval);
     }
 
-    function checkValueTime(currentTimeMilliseconds) {
-      const checkboxValue = store.checkedTimeValue.name;
-      const inputDate = store.inputTimeAndDate.date;
-      const inputTime = store.inputTimeAndDate.time;
-      const singleValue = store.inputSingleValue;
-
-      switch (checkboxValue) {
-        case "data and time":
-          createDateAndTime(inputDate, inputTime);
-          break;
-        case "date":
-          createDateAndTime(singleValue, "");
-          break;
-
-        case "hour":
-          createDateAndTime("", singleValue);
-          break;
-
-        case "minutes":
-          minutesHandler(singleValue, currentTimeMilliseconds);
-          break;
-
-        case "seconds":
-          secondsHandler(singleValue, currentTimeMilliseconds);
-          break;
-
-        default:
-          break;
-      }
-    }
-
     return () => clearInterval(tickInterval);
-  }, [isRuning, isReset]);
+  }, [isStart, isReset]);
+
+  function checkValueTime() {
+    const { date, time } = inputTimeAndDate;
+    const currentTimeMilliseconds = Date.now();
+
+    switch (checkedTimeValue.name) {
+      case "date and time":
+        if (date && time) {
+          createDateAndTime(date, time);
+        } else {
+          errorsHandler(errorMessages.noEnteredTimeAndDate);
+        }
+        break;
+
+      case "date":
+        if (inputSingleValue) {
+          createDateAndTime(inputSingleValue, "");
+        } else {
+          errorsHandler(errorMessages.noEnteredDate);
+        }
+        break;
+
+      case "hour":
+        if (inputSingleValue) {
+          createDateAndTime("", inputSingleValue);
+        } else {
+          errorsHandler(errorMessages.noEnteredHours);
+        }
+        break;
+
+      case "minutes":
+        if (inputSingleValue) {
+          minutesHandler(inputSingleValue, currentTimeMilliseconds);
+        } else {
+          errorsHandler(errorMessages.noEnteredMinutes);
+        }
+        break;
+
+      case "seconds":
+        if (inputSingleValue) {
+          secondsHandler(inputSingleValue, currentTimeMilliseconds);
+        } else {
+          errorsHandler(errorMessages.noEnteredSeconds);
+        }
+        break;
+
+      case "":
+        errorsHandler(errorMessages.noTimeCheckbox);
+        break;
+
+      default:
+        break;
+    }
+  }
 
   function secondsHandler(seconds, currentTimeMilliseconds) {
-    const targetDateTime = new Date(currentTimeMilliseconds + seconds * 1000);
+    const targetDateTime = new Date(
+      currentTimeMilliseconds + Number(seconds) * 1000
+    );
     store.setTargetDate(targetDateTime);
   }
 
   function minutesHandler(minutes, currentTimeMilliseconds) {
     const targetDateTime = new Date(
-      currentTimeMilliseconds + minutes * 60 * 1000
+      currentTimeMilliseconds + Number(minutes) * 60 * 1000
     );
     store.setTargetDate(targetDateTime);
   }
 
-  // Создаем время из значений инпутов даты и часов
   function createDateAndTime(date, time) {
     if (date && time) {
       const targetDate = new Date(`${date} ${time}`);
@@ -78,12 +107,17 @@ const TimeCreation = observer(() => {
       const targetDate = new Date(`${date} ${endTimes.endDay}`);
       store.setTargetDate(targetDate);
     } else if (time) {
-      const targetDate = new Date();
+      const currentTarget = new Date();
       const [hours, minutes] = time.split(":").map(Number);
+      currentTarget.setHours(hours, minutes, 0);
 
-      targetDate.setHours(hours, minutes, 0);
-      store.setTargetDate(targetDate);
+      store.setTargetDate(currentTarget);
     }
+  }
+
+  function errorsHandler(errorMessage) {
+    store.handlerErrors(errorMessage);
+    store.handleStopTimer();
   }
 
   return <></>;

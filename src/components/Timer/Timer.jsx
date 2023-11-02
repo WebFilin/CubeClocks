@@ -8,11 +8,12 @@ import InputTimeWraper from "../InputTimeWraper";
 import TimeCreation from "../TimeCreation";
 import TimeCalculation from "../TimeCalculation";
 import SplitValueForDisplays from "../SplitValueForDisplays/SplitValueForDisplays";
+import ErrorsHandler from "../ErrorsHandler/ErrorsHandler";
 
-const Timer = () => {
+const Timer = observer(() => {
   const [btnTitle, setBtnTitle] = React.useState("");
 
-  const { isStart } = store.isStart;
+  const isStart = store.isStart;
 
   React.useEffect(() => {
     if (isStart) {
@@ -44,8 +45,9 @@ const Timer = () => {
       <TimeCreation />
       <TimeCalculation />
       <SplitValueForDisplays />
+      <ErrorsHandler />
     </div>
   );
-};
+});
 
-export default observer(Timer);
+export default Timer;
