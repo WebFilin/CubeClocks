@@ -27,6 +27,12 @@ class Clocks {
 
   splitedTime = { days: [], hours: [], minutes: [], seconds: [] };
 
+  displayVisibility = {
+    isDays: true,
+    isHour: true,
+    isMinute: true,
+  };
+
   error = "";
 
   constructor() {
@@ -40,16 +46,14 @@ class Clocks {
 
   handlerReset() {
     this.isReset = true;
-    this.setValueChecked("");
-    this.setValueDateOrTime("");
-    this.handlerErrors("");
-
-    this.valuesTime.days = null;
-    this.valuesTime.hours = null;
-    this.valuesTime.minutes = null;
-    this.valuesTime.seconds = null;
-
     this.isStart = false;
+
+    this.setValueChecked("");
+    this.setTargetDate("");
+
+    this.setValuesTime(0, 0, 0, 0);
+
+    this.handlerdisplayVisability(true, true, true);
   }
 
   handleStopTimer() {
@@ -91,13 +95,29 @@ class Clocks {
     this.inputDataValue = data;
   }
 
-  setValuesTime(timeValue) {
+  getValuesTime(timeValue) {
     const { days, hours, minutes, seconds } = timeValue;
 
+    const isDays = days !== 0;
+    const isHours = hours !== 0;
+    const isMinutes = minutes !== 0;
+
+    this.setValuesTime(days, hours, minutes, seconds);
+
+    this.handlerdisplayVisability(isDays, isHours, isMinutes);
+  }
+
+  setValuesTime(days, hours, minutes, seconds) {
     this.valuesTime.days = days;
     this.valuesTime.hours = hours;
     this.valuesTime.minutes = minutes;
     this.valuesTime.seconds = seconds;
+  }
+
+  handlerdisplayVisability(days, hours, minutes) {
+    this.displayVisibility.isDays = days;
+    this.displayVisibility.isHour = hours;
+    this.displayVisibility.isMinute = minutes;
   }
 
   setSplitedTime(timeValue) {

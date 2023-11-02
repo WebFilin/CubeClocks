@@ -3,9 +3,9 @@ import store from "../../store/store";
 import React from "react";
 import errorMessages from "../../constants/errorsMesages";
 
-const SplitValueForDisplays = observer(() => {
+const TimeCalculation = observer(() => {
   const targetDate = store.targetDate;
-  const isRuning = store.targetDate;
+  const isRuning = store.isStart;
 
   React.useEffect(() => {
     const baseDate = new Date();
@@ -20,18 +20,21 @@ const SplitValueForDisplays = observer(() => {
     const seconds = Math.floor((diffTime % (1000 * 60)) / 1000);
 
     if (diffTime > 0) {
-      store.setValuesTime({ days, hours, minutes, seconds });
+      store.getValuesTime({ days, hours, minutes, seconds });
       store.handlerErrors("");
     } else {
-      store.handleStopTimer();
+      checkedError();
     }
 
-    if (isRuning && diffTime < 0) {
-      store.handlerErrors(errorMessages.dateInPast);
+    function checkedError() {
+      if (targetDate && isRuning && diffTime < 0) {
+        store.handlerErrors(errorMessages.dateInPast);
+        store.handleStopTimer();
+      }
     }
   }, [targetDate, isRuning]);
 
-  return <></>;
+  return null;
 });
 
-export default SplitValueForDisplays;
+export default TimeCalculation;

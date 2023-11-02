@@ -7,14 +7,10 @@ const SplitValueForDisplays = observer(() => {
   const { days, hours, minutes, seconds } = store.valuesTime;
 
   React.useEffect(() => {
-    const splitNum = (value) => {
-      return value ? value.toString().split("").map(Number) : {};
-    };
-
     const splitValue = (value) => {
-      const splitArr = splitNum(value);
-      const firstDigit = value <= 9 ? 0 : splitArr[0];
-      const secondDigit = value <= 9 ? value : splitArr[1];
+      const [num1, num2] = value ? value.toString().split("").map(Number) : [];
+      const firstDigit = value <= 9 ? 0 : num1;
+      const secondDigit = value <= 9 ? value : num2;
       return [firstDigit, secondDigit];
     };
 

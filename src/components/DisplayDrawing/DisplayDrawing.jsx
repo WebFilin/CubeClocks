@@ -3,7 +3,6 @@ import styles from "./DisplayDrawing.module.scss";
 import store from "../../store/store";
 import { observer } from "mobx-react-lite";
 import DisplayPairWrapper from "../DisplayPairWrapper";
-import useDisplayPairVisibility from "../../hooks/useDisplayPairVisibility";
 import useDotterSplitVisibility from "../../hooks/useDotterSplitVisibility/useDotterSplitVisibility";
 import useMachMedia from "../../hooks/useMatchMedia";
 
@@ -13,7 +12,7 @@ const DisplayDrawing = observer(() => {
 
   const displRef = React.useRef();
 
-  const { isDays, isHour, isMinute } = useDisplayPairVisibility();
+  const { isDays, isHour, isMinute } = store.displayVisibility;
 
   const { isMobile, isTablet } = useMachMedia();
 
