@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./DisplayDrawing.module.scss";
 import store from "../../store/store";
 import { observer } from "mobx-react-lite";

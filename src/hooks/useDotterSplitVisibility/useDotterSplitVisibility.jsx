@@ -14,6 +14,7 @@ const useDotterSplitVisibility = () => {
     if (isMobile || isTablet) {
       const sumDispl =
         (isDays ? 1 : 0) + (isHour ? 1 : 0) + (isMinute ? 1 : 0) + 1;
+
       switch (sumDispl) {
         case 2:
           setIsMinuteDotter(true);
