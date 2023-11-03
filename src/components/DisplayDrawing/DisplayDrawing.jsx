@@ -4,7 +4,7 @@ import { observer } from "mobx-react-lite";
 import DisplayPairWrapper from "../DisplayPairWrapper";
 import useDotterSplitVisibility from "../../hooks/useDotterSplitVisibility/useDotterSplitVisibility";
 
-const DisplayDrawing = observer(() => {
+const DisplayDrawing = observer((displType) => {
   const { splitedDays, splitedHours, splitedMinutes, splitedSeconds } =
     store.splitedTime;
 

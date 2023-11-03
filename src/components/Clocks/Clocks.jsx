@@ -8,6 +8,8 @@ import ErrorsHandler from "../ErrorsHandler/ErrorsHandler";
 
 const Clocks = observer(() => {
   React.useEffect(() => {
+    store.handlerdisplayVisability(false, true, true);
+
     const timer = setInterval(() => {
       const date = new Date();
 
@@ -17,6 +19,7 @@ const Clocks = observer(() => {
       const seconds = date.getSeconds();
 
       store.getValuesTime({ days, hours, minutes, seconds });
+      store.handlerdisplayVisability(false, true, true);
     }, 1000);
 
     return () => {
@@ -26,7 +29,7 @@ const Clocks = observer(() => {
 
   return (
     <div className={styles.wrapper}>
-      <DisplayDrawing />
+      <DisplayDrawing displType="clock" />
       <SplitValueForDisplays />
       <ErrorsHandler />
     </div>
