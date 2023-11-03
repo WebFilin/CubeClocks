@@ -4,7 +4,7 @@ import presetTime from "../../../constants/presetTime";
 import store from "../../../store/store";
 import { observer } from "mobx-react-lite";
 
-const InputDropList = ({ title, type, handlerInputValue }) => {
+const InputDropList = observer(({ title, type, handlerInputValue }) => {
   const [inputValue, setInputValue] = React.useState("");
 
   function clearValue() {
@@ -49,6 +49,6 @@ const InputDropList = ({ title, type, handlerInputValue }) => {
       <span className={styles.title}> {title} </span>
     </div>
   );
-};
+});
 
-export default observer(InputDropList);
+export default InputDropList;

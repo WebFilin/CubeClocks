@@ -4,27 +4,18 @@ import store from "../../store/store";
 import { observer } from "mobx-react-lite";
 import DisplayPairWrapper from "../DisplayPairWrapper";
 import useDotterSplitVisibility from "../../hooks/useDotterSplitVisibility/useDotterSplitVisibility";
-import useMachMedia from "../../hooks/useMatchMedia";
 
 const DisplayDrawing = observer(() => {
   const { splitedDays, splitedHours, splitedMinutes, splitedSeconds } =
     store.splitedTime;
 
-  const displRef = React.useRef();
-
   const { isDays, isHour, isMinute } = store.displayVisibility;
 
-  const { isMobile, isTablet } = useMachMedia();
-
-  const { isHourDotter, isMinuteDotter } = useDotterSplitVisibility(
-    displRef,
-    isMobile,
-    isTablet
-  );
+  const { isHourDotter, isMinuteDotter } = useDotterSplitVisibility();
 
   return (
     <div className={styles.wrapper}>
-      <div ref={displRef} className={styles.displays_body}>
+      <div className={styles.displays_body}>
         {isDays && (
           <DisplayPairWrapper
             value={splitedDays}

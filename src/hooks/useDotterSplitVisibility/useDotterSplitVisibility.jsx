@@ -1,31 +1,32 @@
 import React from "react";
+import useMatchMedia from "../../hooks/useMatchMedia";
+import store from "../../store/store";
 
-const useDotterSplitVisibility = (displRef, isMobile, isTablet) => {
+const useDotterSplitVisibility = () => {
   const [isHourDotter, setIsHourDotter] = React.useState(true);
   const [isMinuteDotter, setIsMinuteDotter] = React.useState(true);
 
+  const { isMobile, isTablet } = useMatchMedia();
+
+  const { isDays, isHour, isMinute } = store.displayVisibility;
+
   React.useEffect(() => {
-    const sumDispl = displRef.current.children.length;
-
     if (isMobile || isTablet) {
-      setIsMinuteDotter(false);
-
+      const sumDispl =
+        (isDays ? 1 : 0) + (isHour ? 1 : 0) + (isMinute ? 1 : 0) + 1;
       switch (sumDispl) {
         case 2:
           setIsMinuteDotter(true);
           setIsHourDotter(true);
           break;
-
         case 3:
           setIsMinuteDotter(false);
           setIsHourDotter(true);
           break;
-
         case 4:
           setIsHourDotter(false);
           setIsMinuteDotter(true);
           break;
-
         default:
           setIsHourDotter(true);
           setIsMinuteDotter(true);
@@ -35,7 +36,7 @@ const useDotterSplitVisibility = (displRef, isMobile, isTablet) => {
       setIsHourDotter(true);
       setIsMinuteDotter(true);
     }
-  }, [displRef, isMobile, isTablet]);
+  }, [isMobile, isTablet, isDays, isHour, isMinute]);
 
   return {
     isHourDotter,

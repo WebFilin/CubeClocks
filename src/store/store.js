@@ -62,7 +62,6 @@ class Clocks {
 
   handlerValueChecked(name, type) {
     this.setValueChecked(name, type);
-    this.isReset = false;
   }
 
   handlerInputTimeValue(value) {
