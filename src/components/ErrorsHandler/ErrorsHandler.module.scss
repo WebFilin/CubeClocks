@@ -1,11 +1,44 @@
 .wrapper {
-  position: absolute;
-  width: 50vw;
-  height: 50vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1;
 
-  border: 2px solid red;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(2px);
+  transition: 0.5s;
+}
+
+.modal_content {
+  width: 50vw;
+  height: 50vh;
+  border-radius: 12px;
+  background-color: white;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  animation: animoModal 0.4s ease-in-out forwards;
+
+  box-shadow: 5px 8px 8px rgba(0, 0, 0, 0.4);
+}
+
+@keyframes animoModal {
+  0% {
+    transform: scale(0.5);
+  }
+
+  50% {
+  }
+
+  100% {
+    transform: scale(1);
+  }
 }

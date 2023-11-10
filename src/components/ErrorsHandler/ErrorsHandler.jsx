@@ -6,7 +6,7 @@ import React from "react";
 const ErrorsHandler = observer(() => {
   const error = store.error;
   const [isOpen, setIsOpen] = React.useState(false);
-  const popupRef = React.useRef(null);
+  const popUpRef = React.useRef(null);
 
   React.useEffect(() => {
     if (error) {
@@ -16,13 +16,10 @@ const ErrorsHandler = observer(() => {
     }
   }, [error]);
 
-  //   const togglePopup = () => {
-  //     setIsOpen(!isOpen);
-  //   };
-
   const handleClickOutside = (event) => {
-    if (popupRef.current && !popupRef.current.contains(event.target)) {
+    if (popUpRef.current && !popUpRef.current.contains(event.target)) {
       setIsOpen(false);
+      store.handlerErrors("");
     }
   };
 
@@ -36,8 +33,10 @@ const ErrorsHandler = observer(() => {
   return (
     <>
       {isOpen && (
-        <div ref={popupRef} className={styles.wrapper}>
-          {store.error}
+        <div className={styles.wrapper}>
+          <div ref={popUpRef} className={styles.modal_content}>
+            {store.error}
+          </div>
         </div>
       )}
     </>
