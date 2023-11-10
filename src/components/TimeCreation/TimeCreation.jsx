@@ -7,7 +7,6 @@ import errorMessages from "../../constants/errorsMesages";
 const TimeCreation = observer(() => {
   const isRuning = store.isStart;
   const isReset = store.isReset;
-
   const currentTimeMilliseconds = Date.now();
 
   React.useEffect(() => {

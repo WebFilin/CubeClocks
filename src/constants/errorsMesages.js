@@ -8,6 +8,8 @@ const errorMessages = {
   noEnteredTimeAndDate: "Date or time not entered",
   noEnteredDate: "Date not entered",
   noEnteredHours: "Hours not entered",
+  limitStopwatch: "Stopwatchr limit exceeded",
+  pomadoroError: "Pomadoro value not selected",
 };
 
 export default errorMessages;

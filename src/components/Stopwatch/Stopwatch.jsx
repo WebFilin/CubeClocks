@@ -6,6 +6,7 @@ import { observer } from "mobx-react-lite";
 import SplitValueForDisplays from "../SplitValueForDisplays/SplitValueForDisplays";
 import ErrorsHandler from "../ErrorsHandler/ErrorsHandler";
 import Btn from "../UI/Btns/Btn";
+import errorMessages from "../../constants/errorsMesages";
 
 const Stopwatch = observer(() => {
   const [btnTitle, setBtnTitle] = React.useState("");
@@ -30,17 +31,23 @@ const Stopwatch = observer(() => {
     let timer;
 
     if (isStart) {
-      time();
+      getTime();
     } else {
       clearInterval(timer);
     }
 
-    function time() {
+    function getTime() {
       timer = setInterval(() => {
         setTime((prevTime) => {
           const newSeconds = prevTime.seconds + 1;
           const newMinutes = prevTime.minutes + Math.floor(newSeconds / 60);
           const newHours = prevTime.hours + Math.floor(newMinutes / 60);
+
+          if (newHours === 23 && newMinutes === 59) {
+            store.handlerErrors(errorMessages.limitStopwatch);
+            store.handleStopTimer();
+            clearInterval(timer);
+          }
 
           return {
             hours: newHours,
@@ -57,13 +64,12 @@ const Stopwatch = observer(() => {
   }, [isStart]);
 
   React.useEffect(() => {
-    const days = 0;
     const { hours, minutes, seconds } = time;
 
     const isHours = hours !== 0;
     const isMinutes = minutes !== 0;
 
-    store.getValuesTime({ days, hours, minutes, seconds });
+    store.getValuesTime({ days: 0, hours, minutes, seconds });
     store.handlerdisplayVisability(false, isHours, isMinutes);
   }, [time]);
 
@@ -72,19 +78,15 @@ const Stopwatch = observer(() => {
   }
 
   function handlerRest() {
-    const days = 0;
-
     setTime({
       seconds: 0,
       minutes: 0,
       hours: 0,
     });
 
-    const { hours, minutes, seconds } = time;
-
     store.handlerReset();
 
-    store.getValuesTime({ days, hours, minutes, seconds });
+    store.getValuesTime({ days: 0, hours: 0, minutes: 0, seconds: 0 });
     store.handlerdisplayVisability(false, false, false);
   }
 
