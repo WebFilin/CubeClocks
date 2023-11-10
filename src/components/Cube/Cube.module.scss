@@ -1,5 +1,14 @@
+@import "../../constants/scss/constants.scss";
+
 $width: 2vw;
 $height: 2vw;
+
+%base_style {
+  height: $height;
+  width: $width;
+  position: fixed;
+  border-radius: 5px;
+}
 
 .wrapper {
   width: $width;
@@ -9,12 +18,14 @@ $height: 2vw;
   align-items: center;
 }
 
-.front {
-  height: $height;
-  width: $width;
-  position: fixed;
-  border-radius: 5px;
-  background-color: #337ab7;
+.base {
+  @extend %base_style;
+  background-color: $base_background_cube;
+}
+
+.in_break {
+  @extend %base_style;
+  background-color: $in_breake_background_cube;
 }
 
 /* Landscape tablets and medium desktops */

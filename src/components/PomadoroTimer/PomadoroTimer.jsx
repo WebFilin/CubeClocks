@@ -7,7 +7,6 @@ import SplitValueForDisplays from "../SplitValueForDisplays/SplitValueForDisplay
 import ErrorsHandler from "../ErrorsHandler/ErrorsHandler";
 import Btn from "../UI/Btns/Btn";
 import errorMessages from "../../constants/errorsMesages";
-import TimeCalculation from "../TimeCalculation";
 
 const PomadoroTimer = observer(() => {
   const [btnTitle, setBtnTitle] = React.useState("");
@@ -63,9 +62,11 @@ const PomadoroTimer = observer(() => {
             secondsBase = breakTime * 60;
             setBreaksCounter((prev) => prev + 1);
             setIsBreakTitle(true);
+            store.cubesStyleHandler();
           } else {
             secondsBase = pomodoro * 60;
             setIsBreakTitle(false);
+            store.cubesStyleHandler();
           }
           isPomodoro = !isPomodoro;
         }
@@ -118,7 +119,7 @@ const PomadoroTimer = observer(() => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.pomadoro_btns_value_wrapper}>
-        <Btn funcClick={() => handlerPomadoroTime(1)} title="15" />
+        <Btn funcClick={() => handlerPomadoroTime(15)} title="15" />
         <Btn funcClick={() => handlerPomadoroTime(25)} title="25" />
         <Btn funcClick={() => handlerPomadoroTime(35)} title="35" />
         <Btn funcClick={() => handlerPomadoroTime(45)} title="45" />

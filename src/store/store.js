@@ -34,6 +34,7 @@ class Clocks {
   };
 
   error = "";
+  isCubeBreak = false;
 
   constructor() {
     makeAutoObservable(this);
@@ -125,6 +126,10 @@ class Clocks {
 
   handlerErrors(error) {
     this.error = error;
+  }
+
+  cubesStyleHandler() {
+    this.isCubeBreak = !this.isCubeBreak;
   }
 }
 

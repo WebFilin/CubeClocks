@@ -1,14 +1,18 @@
+import { observer } from "mobx-react-lite";
 import styles from "./DotterSplit.module.scss";
+import store from "../../store/store";
 
-function DotterSplit() {
+const DotterSplit = observer(() => {
+  const isCubeBreak = store.isCubeBreak;
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.wrapper_points}>
-        <div className={styles.points}></div>
-        <div className={styles.points}></div>
+        <div className={isCubeBreak ? styles.in_break : styles.points}></div>
+        <div className={isCubeBreak ? styles.in_break : styles.points}></div>
       </div>
     </div>
   );
-}
+});
 
 export default DotterSplit;

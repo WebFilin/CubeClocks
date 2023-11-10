@@ -1,3 +1,5 @@
+@import "../../constants/scss/constants.scss";
+
 .wrapper {
   width: 100%;
   display: flex;
@@ -26,7 +28,7 @@
 }
 
 .break_title_wrapper {
-  color: red;
+  color: $in_breake_background_cube;
   font-size: 30px;
   margin-bottom: 10px;
 }
