@@ -1,0 +1,64 @@
+@import "../../constants/scss/constants.scss";
+
+$sideCube: 150px;
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.preloader {
+  width: $sideCube;
+  height: $sideCube;
+
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+
+  div {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: #337ab7;
+    transform: scale(0);
+    transform-origin: center center;
+    animation: preloader-anim 2s infinite linear;
+  }
+
+  div:nth-of-type(1),
+  div:nth-of-type(5),
+  div:nth-of-type(9) {
+    animation-delay: 0.1s;
+  }
+
+  div:nth-of-type(4),
+  div:nth-of-type(8) {
+    animation-delay: 0.3s;
+  }
+
+  div:nth-of-type(2),
+  div:nth-of-type(6) {
+    animation-delay: 0.4s;
+  }
+
+  div:nth-of-type(3) {
+    animation-delay: 0.5s;
+  }
+}
+
+@keyframes preloader-anim {
+  0% {
+    transform: scale(0);
+  }
+  40% {
+    transform: scale(1);
+  }
+  80% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
