@@ -47,7 +47,7 @@ const PomadoroTimer = observer(() => {
 
     function countdownTimer(pomodoro, breakTime) {
       let isPomodoro = true;
-      let secondsBase = pomodoro * 60;
+      let secondsBase = pomodoro;
 
       timer = setInterval(() => {
         if (secondsBase === 0) {
@@ -58,20 +58,14 @@ const PomadoroTimer = observer(() => {
             setIsBreakTitle(true);
             store.cubesStyleHandler();
           } else {
-            secondsBase = pomodoro * 60;
+            secondsBase = pomodoro;
             setIsBreakTitle(false);
             store.cubesStyleHandler();
           }
           isPomodoro = !isPomodoro;
         }
 
-        let mins = Math.floor(secondsBase / 60);
-        let secs = secondsBase % 60;
-
-        const minutes = mins < 10 ? "0" + mins : mins;
-        const seconds = secs < 10 ? "0" + secs : secs;
-
-        store.getValuesTime({ days: 0, hours: 0, minutes, seconds });
+        calcTime(secondsBase);
 
         secondsBase--;
       }, 1000);
@@ -97,7 +91,7 @@ const PomadoroTimer = observer(() => {
     }
   }
 
-  function handlerRest() {
+  function handlerReset() {
     store.handlerReset();
     setPomodoroTime(0);
     setBreaksCounter(0);
@@ -107,7 +101,21 @@ const PomadoroTimer = observer(() => {
   }
 
   function handlerPomadoroTime(value) {
-    setPomodoroTime(value);
+    const secondsBase = value * 60;
+
+    setPomodoroTime(secondsBase);
+
+    calcTime(secondsBase);
+  }
+
+  function calcTime(valueTime) {
+    let mins = Math.floor(valueTime / 60);
+    let secs = valueTime % 60;
+
+    const minutes = mins < 10 ? "0" + mins : mins;
+    const seconds = secs < 10 ? "0" + secs : secs;
+
+    store.getValuesTime({ days: 0, hours: 0, minutes, seconds });
   }
 
   return (
@@ -127,7 +135,7 @@ const PomadoroTimer = observer(() => {
 
       <div className={styles.btns_wrapper}>
         <Btn funcClick={handllerStart} title={btnTitle} />
-        <Btn funcClick={handlerRest} title="Reset" />
+        <Btn funcClick={handlerReset} title="Reset" />
       </div>
 
       <SplitValueForDisplays />
