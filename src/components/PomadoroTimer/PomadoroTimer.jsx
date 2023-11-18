@@ -26,20 +26,14 @@ const PomadoroTimer = observer(() => {
   }, []);
 
   React.useEffect(() => {
-    if (isStart) {
-      setBtnTitle("Stop");
-    } else {
-      setBtnTitle("Start");
-    }
-  }, [isStart]);
-
-  React.useEffect(() => {
     let timer;
 
     if (isStart) {
       getTime();
+      setBtnTitle("Stop");
     } else {
       clearInterval(timer);
+      setBtnTitle("Start");
     }
 
     function getTime() {
@@ -119,10 +113,10 @@ const PomadoroTimer = observer(() => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.pomadoro_btns_value_wrapper}>
-        <Btn funcClick={() => handlerPomadoroTime(15)} title="15" />
-        <Btn funcClick={() => handlerPomadoroTime(25)} title="25" />
-        <Btn funcClick={() => handlerPomadoroTime(35)} title="35" />
-        <Btn funcClick={() => handlerPomadoroTime(45)} title="45" />
+        <Btn funcClick={() => handlerPomadoroTime(15)} title="15 min" />
+        <Btn funcClick={() => handlerPomadoroTime(25)} title="25 min" />
+        <Btn funcClick={() => handlerPomadoroTime(35)} title="35 min" />
+        <Btn funcClick={() => handlerPomadoroTime(45)} title="45 min" />
       </div>
 
       <div className={styles.break_title_wrapper}>
