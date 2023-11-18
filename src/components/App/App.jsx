@@ -1,16 +1,23 @@
 import styles from "./App.module.scss";
-import Timer from "../Timer/Timer";
-import Clocks from "../Clocks/Clocks";
-import Stopwatch from "../Stopwatch";
-import PomadoroTimer from "../PomadoroTimer/PomadoroTimer";
+import React, { Suspense } from "react";
+
+const PomadoroTimer = React.lazy(() =>
+  import("../PomadoroTimer/PomadoroTimer")
+);
+const Timer = React.lazy(() => import("../Timer/Timer"));
+const Clocks = React.lazy(() => import("../Clocks/Clocks"));
+const Stopwatch = React.lazy(() => import("../Stopwatch"));
 
 function App() {
   return (
     <div className={styles.wrapper}>
-      {/* <Timer /> */}
-      {/* <Clocks /> */}
-      {/* <Stopwatch /> */}
-      <PomadoroTimer />
+      <Suspense fallback={<div>Loading...</div>}>
+        {/* <PomadoroTimer /> */}
+
+        {/* <Timer /> */}
+        {/* <Clocks /> */}
+        <Stopwatch />
+      </Suspense>
     </div>
   );
 }

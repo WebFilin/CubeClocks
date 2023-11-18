@@ -116,6 +116,7 @@ const PomadoroTimer = observer(() => {
   }
 
   function handlerPomadoroTime(value) {
+    currentTime.current = 0;
     const seconds = value * 60;
 
     setPomodoroTime(seconds);
