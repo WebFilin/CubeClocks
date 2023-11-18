@@ -13,13 +13,17 @@ const PomadoroTimer = observer(() => {
 
   const [pomodoroTime, setPomodoroTime] = React.useState(0);
 
-  const [breaksCounter, setBreaksCounter] = React.useState(0);
-
   const [breakTime, setBreakTime] = React.useState(5);
 
   const [isBreakTitle, setIsBreakTitle] = React.useState(false);
 
   const isStart = store.isStart;
+
+  const breakCounter = React.useRef(0);
+
+  const currentTime = React.useRef(0);
+
+  const timerInterval = 1000;
 
   React.useEffect(() => {
     store.handlerdisplayVisability(false, false, true);
@@ -34,6 +38,8 @@ const PomadoroTimer = observer(() => {
     } else {
       clearInterval(timer);
       setBtnTitle("Start");
+
+      checkCurrentTime();
     }
 
     function getTime() {
@@ -54,7 +60,8 @@ const PomadoroTimer = observer(() => {
           // состояние перерыва
           if (isPomodoro) {
             secondsBase = breakTime * 60;
-            setBreaksCounter((prev) => prev + 1);
+            breakCounter.current += 1;
+
             setIsBreakTitle(true);
             store.cubesStyleHandler();
           } else {
@@ -66,9 +73,15 @@ const PomadoroTimer = observer(() => {
         }
 
         calcTime(secondsBase);
-
+        currentTime.current = secondsBase;
         secondsBase--;
-      }, 1000);
+      }, timerInterval);
+    }
+
+    function checkCurrentTime() {
+      if (currentTime.current !== 0) {
+        setPomodoroTime(currentTime.current);
+      }
     }
 
     return () => {
@@ -77,11 +90,11 @@ const PomadoroTimer = observer(() => {
   }, [isStart, pomodoroTime, breakTime]);
 
   React.useEffect(() => {
-    if (breaksCounter > 4) {
+    if (breakCounter.current > 4) {
       handlerPomadoroTime(30);
-      setBreaksCounter(0);
+      breakCounter.current = 0;
     }
-  }, [breaksCounter]);
+  }, [breakCounter.current]);
 
   function handllerStart() {
     if (!isStart) {
@@ -94,18 +107,19 @@ const PomadoroTimer = observer(() => {
   function handlerReset() {
     store.handlerReset();
     setPomodoroTime(0);
-    setBreaksCounter(0);
+
+    breakCounter.current = 0;
+    currentTime.current = 0;
 
     store.getValuesTime({ days: 0, hours: 0, minutes: 0, seconds: 0 });
     store.handlerdisplayVisability(false, false, true);
   }
 
   function handlerPomadoroTime(value) {
-    const secondsBase = value * 60;
+    const seconds = value * 60;
 
-    setPomodoroTime(secondsBase);
-
-    calcTime(secondsBase);
+    setPomodoroTime(seconds);
+    calcTime(seconds);
   }
 
   function calcTime(valueTime) {
