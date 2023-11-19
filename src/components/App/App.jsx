@@ -15,11 +15,11 @@ const Stopwatch = React.lazy(() => import("../Stopwatch"));
 function App() {
   return (
     <div className={styles.wrapper}>
-      <BurgerMenu />
       <Router>
+        <BurgerMenu />
         <Suspense fallback={<Loader />}>
           <Routes>
-            <Route path="/" element={<Clocks />} />
+            <Route path={routes.clock} element={<Clocks />} />
             <Route path={routes.pomadoro} element={<PomadoroTimer />} />
             <Route path={routes.timer} element={<Timer />} />
             <Route path={routes.stopwatch} element={<Stopwatch />} />

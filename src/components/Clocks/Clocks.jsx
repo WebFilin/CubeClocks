@@ -8,6 +8,7 @@ import ErrorsHandler from "../ErrorsHandler/ErrorsHandler";
 
 const Clocks = observer(() => {
   React.useEffect(() => {
+    store.handlerReset();
     store.handlerdisplayVisability(false, true, true);
 
     const timer = setInterval(() => {

@@ -26,6 +26,7 @@ const PomadoroTimer = observer(() => {
   const timerInterval = 1000;
 
   React.useEffect(() => {
+    store.handlerReset();
     store.handlerdisplayVisability(false, false, true);
   }, []);
 

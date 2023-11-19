@@ -16,6 +16,10 @@ const Timer = observer(() => {
   const isStart = store.isStart;
 
   React.useEffect(() => {
+    store.handlerReset();
+  }, []);
+
+  React.useEffect(() => {
     if (isStart) {
       setBtnTitle("Stop");
     } else {

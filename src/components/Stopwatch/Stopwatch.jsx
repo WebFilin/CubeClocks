@@ -20,6 +20,10 @@ const Stopwatch = observer(() => {
   });
 
   React.useEffect(() => {
+    store.handlerReset();
+  }, []);
+
+  React.useEffect(() => {
     if (isStart) {
       setBtnTitle("Stop");
     } else {
