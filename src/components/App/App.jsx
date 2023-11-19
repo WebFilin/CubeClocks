@@ -3,6 +3,7 @@ import React, { Suspense } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Loader from "../Loader";
 import routes from "../../constants/routes";
+import BurgerMenu from "../BurgerMenu/BurgerMenu";
 
 const PomadoroTimer = React.lazy(() =>
   import("../PomadoroTimer/PomadoroTimer")
@@ -14,6 +15,7 @@ const Stopwatch = React.lazy(() => import("../Stopwatch"));
 function App() {
   return (
     <div className={styles.wrapper}>
+      <BurgerMenu />
       <Router>
         <Suspense fallback={<Loader />}>
           <Routes>

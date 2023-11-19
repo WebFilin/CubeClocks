@@ -1,0 +1,59 @@
+@import "../../../../constants/scss/constants.scss";
+
+%base_styles_wrapper {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+%base_styles_line {
+  width: 35px;
+  height: 4px;
+  background: $burger_menu_base;
+  border-radius: 2px;
+  transition: all 0.3s;
+}
+
+.wrapper {
+  @extend %base_styles_wrapper;
+
+  .line {
+    @extend %base_styles_line;
+  }
+
+  &:hover {
+    .line {
+      background: $burger_menu_active;
+    }
+  }
+}
+
+.wrapper_active {
+  @extend %base_styles_wrapper;
+
+  &:hover {
+    .line {
+      background: $burger_menu_active;
+    }
+  }
+
+  .line {
+    @extend %base_styles_line;
+  }
+
+  .line:nth-child(1) {
+    transform: rotate(45deg) translate(9px, 9px);
+  }
+
+  .line:nth-child(2) {
+    opacity: 0;
+  }
+
+  .line:nth-child(3) {
+    transform: rotate(-45deg) translate(9px, -9px);
+  }
+}
