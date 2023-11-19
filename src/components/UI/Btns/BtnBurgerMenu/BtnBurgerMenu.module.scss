@@ -7,13 +7,14 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  padding: 10px 0px 10px 20px;
   cursor: pointer;
 }
 
 %base_styles_line {
   width: 35px;
   height: 4px;
-  background: $burger_menu_base;
+  background: $burger_btn_menu_base;
   border-radius: 2px;
   transition: all 0.3s;
 }
@@ -27,8 +28,20 @@
 
   &:hover {
     .line {
-      background: $burger_menu_active;
+      background: $burger_btn_menu_active;
     }
+  }
+
+  .line:nth-child(1) {
+    transform: rotate(0deg) translate(0px, 0px);
+  }
+
+  .line:nth-child(2) {
+    opacity: 1;
+  }
+
+  .line:nth-child(3) {
+    transform: rotate(0deg) translate(0px, 0px);
   }
 }
 
@@ -37,7 +50,7 @@
 
   &:hover {
     .line {
-      background: $burger_menu_active;
+      background: $burger_btn_menu_active;
     }
   }
 

@@ -1,0 +1,35 @@
+@import "../../constants/scss/constants.scss";
+
+.wrapper {
+  transform: translateX(-100%);
+  transition: 0.2s;
+}
+
+.wrapper_active {
+  transform: translateX(0);
+  transition: 0.4s;
+}
+
+.blur {
+  position: absolute;
+  width: 82vw;
+  height: 90vh;
+  left: 15vw;
+  backdrop-filter: blur(2px);
+  border: 2px solid red;
+}
+
+.content_list {
+  height: 90vh;
+  width: 15vw;
+  background-color: $background_content_burger_menu;
+  display: flex;
+  flex-direction: column;
+
+  .txt {
+    display: inline-block;
+    padding-top: 5px;
+    font-size: 20px;
+    color: whitesmoke;
+  }
+}

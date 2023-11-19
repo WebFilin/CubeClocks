@@ -1,12 +1,12 @@
 import { observer } from "mobx-react-lite";
-import React from "react";
+import store from "../../../../store/store";
 import styles from "./BtnBurgerMenu.module.scss";
 
 const BtnBurgerMenu = observer(() => {
-  const [isOpen, setIsOpen] = React.useState(false);
+  const isOpen = store.isBurgerMenuOpen;
 
   const handleClick = () => {
-    setIsOpen(!isOpen);
+    store.burgerOpenHandler();
   };
 
   return (
