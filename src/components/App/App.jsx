@@ -1,8 +1,8 @@
 import styles from "./App.module.scss";
 import React, { Suspense } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-
 import Loader from "../Loader";
+import routes from "../../constants/routes";
 
 const PomadoroTimer = React.lazy(() =>
   import("../PomadoroTimer/PomadoroTimer")
@@ -17,10 +17,10 @@ function App() {
       <Router>
         <Suspense fallback={<Loader />}>
           <Routes>
-            <Route exact path="/" element={<Clocks />} />
-            <Route exact path="/pomadoro" element={<PomadoroTimer />} />
-            <Route exact path="/timer" element={<Timer />} />
-            <Route exact path="/stopwatch" element={<Stopwatch />} />
+            <Route path="/" element={<Clocks />} />
+            <Route path={routes.pomadoro} element={<PomadoroTimer />} />
+            <Route path={routes.timer} element={<Timer />} />
+            <Route path={routes.stopwatch} element={<Stopwatch />} />
           </Routes>
         </Suspense>
       </Router>
