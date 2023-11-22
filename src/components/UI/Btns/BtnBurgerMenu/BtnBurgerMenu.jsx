@@ -1,17 +1,14 @@
 import { observer } from "mobx-react-lite";
-import store from "../../../../store/store";
 import styles from "./BtnBurgerMenu.module.scss";
 
-const BtnBurgerMenu = observer(() => {
-  const isOpen = store.isBurgerMenuOpen;
-
+const BtnBurgerMenu = observer(({ isOpenMenu, burgerOpenHandler }) => {
   const handleClick = () => {
-    store.burgerOpenHandler();
+    burgerOpenHandler();
   };
 
   return (
     <div
-      className={isOpen ? styles.wrapper_active : styles.wrapper}
+      className={isOpenMenu ? styles.wrapper_active : styles.wrapper}
       onClick={handleClick}
     >
       <span className={styles.line}></span>

@@ -1,16 +1,13 @@
 import { observer } from "mobx-react-lite";
 import styles from "./BurgerMenuContent.module.scss";
-import store from "../../store/store";
 import routes from "../../constants/routes";
 import { NavLink } from "react-router-dom";
 
-const BurgerMenuContent = observer(() => {
-  const isOpen = store.isBurgerMenuOpen;
-
+const BurgerMenuContent = observer(({ isOpen, burgerOpenHandler }) => {
   const arrRoutes = Object.entries(routes);
 
   function outMenuCkickHandler() {
-    store.burgerOpenHandler();
+    burgerOpenHandler();
   }
 
   function checkOutMenu(e) {
@@ -22,6 +19,8 @@ const BurgerMenuContent = observer(() => {
       className={isOpen ? styles.wrapper_active : styles.wrapper}
       onClick={outMenuCkickHandler}
     >
+      {isOpen && <div className={styles.blur}></div>}
+
       <ul className={styles.content_list} onClick={checkOutMenu}>
         {arrRoutes.map(([name, route]) => {
           return (

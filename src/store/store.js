@@ -36,8 +36,6 @@ class Clocks {
   error = "";
   isCubeBreak = false;
 
-  isBurgerMenuOpen = false;
-
   constructor() {
     makeAutoObservable(this);
   }
@@ -134,9 +132,6 @@ class Clocks {
     this.isCubeBreak = !this.isCubeBreak;
   }
 
-  burgerOpenHandler() {
-    this.isBurgerMenuOpen = !this.isBurgerMenuOpen;
-  }
 }
 
 export default new Clocks();

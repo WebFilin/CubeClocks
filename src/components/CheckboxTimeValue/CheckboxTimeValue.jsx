@@ -12,7 +12,7 @@ const CheckboxTimeValue = observer(() => {
     <div className={styles.wrapper}>
       {valuesTimeForCheckbox.map((elem) => {
         return (
-          <div key={elem.name}>
+          <div className={styles.body} key={elem.name}>
             <Checkbox isChecked={currentValue === elem.name} value={elem} />
           </div>
         );
