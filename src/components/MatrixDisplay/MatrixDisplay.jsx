@@ -5,7 +5,6 @@ import Cube from "../Cube";
 import SetNumber from "../SetNumber/SetNumber";
 import { observer } from "mobx-react-lite";
 
-// eslint-disable-next-line react/prop-types
 const ClockDisplay = observer(({ valueNum }) => {
   const [matrixForDispl, setMatrixForDispl] = React.useState([]);
 

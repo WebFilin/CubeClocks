@@ -3,6 +3,7 @@ import styles from "./DisplayPairWrapper.module.scss";
 import MatrixDisplay from "../MatrixDisplay";
 import DotterSplit from "../DotterSplit/DotterSplit";
 
+// eslint-disable-next-line react/prop-types
 function DisplayPairWrapper({ value, title, isDotter }) {
   const [numbersValue, setNumbersValue] = React.useState([0, 0]);
 

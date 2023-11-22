@@ -18,14 +18,9 @@ $height: 2vw;
   align-items: center;
 }
 
-.base {
+.cube_front {
   @extend %base_style;
   background-color: $base_background_cube;
-}
-
-.in_break {
-  @extend %base_style;
-  background-color: $in_breake_background_cube;
 }
 
 /* Landscape tablets and medium desktops */
@@ -37,7 +32,7 @@ $height: 2vw;
     height: $size;
   }
 
-  .front {
+  .cube_front {
     width: $size;
     height: $size;
   }
@@ -51,7 +46,7 @@ $height: 2vw;
     height: $size;
   }
 
-  .front {
+  .cube_front {
     width: $size;
     height: $size;
   }
@@ -65,7 +60,7 @@ $height: 2vw;
     height: $size;
   }
 
-  .front {
+  .cube_front {
     width: $size;
     height: $size;
   }
@@ -79,7 +74,7 @@ $height: 2vw;
     height: $size;
   }
 
-  .front {
+  .cube_front {
     width: $size;
     height: $size;
   }
