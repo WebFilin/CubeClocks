@@ -1,9 +1,18 @@
 @import "../../constants/scss/constants.scss";
 
-.wrapper {
+%base {
   position: fixed;
   top: 0px;
   left: 0px;
+}
+
+.wrapper {
+  @extend %base;
+  z-index: 0;
+}
+
+.wrapper_active {
+  @extend %base;
   z-index: 1;
 }
 

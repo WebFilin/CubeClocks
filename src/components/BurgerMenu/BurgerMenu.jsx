@@ -12,7 +12,7 @@ const BurgerMenu = observer(() => {
   }
 
   return (
-    <nav className={styles.wrapper}>
+    <nav className={isOpenMenu ? styles.wrapper_active : styles.wrapper}>
       <div className={styles.btn_wraper}>
         <BtnBurgerMenu
           isOpenMenu={isOpenMenu}

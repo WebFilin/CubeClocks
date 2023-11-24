@@ -1,35 +1,109 @@
-@import "../../constants/scss/constants.scss";
-$timeTransition: 0.3s;
+@import "../.././constants/scss/constants.scss";
+
+%base {
+  text-decoration: none;
+  text-transform: capitalize;
+  font-size: 25px;
+  transition: transform 0.3s ease;
+}
 
 .wrapper {
   transform: translateX(-120%);
+  transition: 0.2s;
 }
 
 .wrapper_active {
-  transform: translateX(0);
-  transition: all $timeTransition;
+  transform: translateX(0%);
+  transition: 0.2s;
+}
+
+.body_wrapper {
+  height: 90vh;
+  display: flex;
+  margin-top: 10px;
+}
+
+.body {
+  width: 150px;
+  background-color: $background_content_burger_menu;
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
 }
 
 .content_list {
-  height: 90vh;
-  width: 10vw;
-  background-color: $background_content_burger_menu;
-  display: flex;
-  flex-direction: column;
+  all: unset;
+  list-style-type: none;
+  padding: 0px 10px 0px 10px;
+}
 
-  .txt {
-    display: inline-block;
-    padding: 8px;
-    font-size: 20px;
-    color: whitesmoke;
-    text-transform: capitalize;
+.nav_link {
+  @extend %base;
+  color: $burger_btn_menu_base;
+}
+
+.nav_link_active {
+  @extend %base;
+  color: $burger_btn_menu_active;
+}
+
+.txt {
+  padding-top: 5px;
+
+  &:hover {
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
   }
 }
 
 .blur {
-  position: absolute;
-  height: 90vh;
-  width: 90vw;
-  transform: translateX(12vw);
+  flex-grow: 1;
   backdrop-filter: blur(2px);
+}
+
+/* Portrait tablets and small desktops */
+@media (min-width: 768px) and (max-width: 991px) {
+  .body {
+    width: 20vw;
+  }
+
+  .nav_link {
+    font-size: 35px;
+  }
+
+  .nav_link_active {
+    font-size: 35px;
+  }
+}
+
+/* Landscape phones and portrait tablets */
+@media (max-width: 767px) {
+  .body {
+    width: 30vw;
+  }
+
+  .nav_link {
+    font-size: 35px;
+  }
+
+  .nav_link_active {
+    font-size: 35px;
+  }
+}
+
+/* Portrait phones and smaller */
+@media (max-width: 550px) {
+  .body {
+    width: 75vw;
+  }
+}
+
+/* Portrait phones and smaller */
+@media (max-width: 480px) {
+  .body {
+    width: 100vw;
+  }
+}
+/* Iphone 5 */
+@media (max-width: 320px) {
 }
