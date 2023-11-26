@@ -7,7 +7,6 @@ import { observer } from "mobx-react-lite";
 const InputDropList = observer(({ title, type, handlerInputValue }) => {
   const [inputValue, setInputValue] = React.useState("");
 
-
   function clearValue() {
     if (inputValue) {
       store.setValueDateOrTime("", "");
@@ -33,8 +32,8 @@ const InputDropList = observer(({ title, type, handlerInputValue }) => {
       <input
         className={styles.input}
         list="time"
-        onChange={(e) => handlerChange(e)}
-        onKeyPress={(e) => handlerKeyPress(e)}
+        onChange={handlerChange}
+        onKeyPress={handlerKeyPress}
         onClick={clearValue}
         type={type}
         value={inputValue}

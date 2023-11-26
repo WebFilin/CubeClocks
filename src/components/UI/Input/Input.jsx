@@ -17,8 +17,8 @@ function Input({ getValue, type, valueInput, onKeyDown }) {
       <input
         type={type}
         className={styles.input}
-        onChange={(e) => handlerChange(e)}
-        onKeyPress={(e) => handlerKeyPress(e)}
+        onChange={handlerChange}
+        onKeyPress={handlerKeyPress}
         value={valueInput}
       ></input>
 
