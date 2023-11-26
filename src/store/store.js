@@ -126,6 +126,10 @@ class Clocks {
   handlerErrors(error) {
     this.error = error;
   }
+
+  handlerSetValueReset(value) {
+    this.isReset = value;
+  }
 }
 
 export default new Clocks();

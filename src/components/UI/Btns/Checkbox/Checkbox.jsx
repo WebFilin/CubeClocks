@@ -8,6 +8,7 @@ const Checkbox = React.memo(({ isChecked, value }) => {
     const { name, type } = value;
 
     store.handlerValueChecked(name, type);
+    store.handlerSetValueReset(false);
   }
 
   return (
