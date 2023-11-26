@@ -15,3 +15,4 @@
 - React router 6
 - Prettier
 - Mobx
+- -SCSS
