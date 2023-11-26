@@ -126,7 +126,6 @@ class Clocks {
   handlerErrors(error) {
     this.error = error;
   }
-
 }
 
 export default new Clocks();

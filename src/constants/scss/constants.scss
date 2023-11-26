@@ -1,6 +1,12 @@
+$btn_base_color: white;
+$app_base_color: #337ab7;
+
 $main_background: #5fcaa1;
-$base_background_cube: #337ab7;
+$base_background_cube: $app_base_color;
 $in_breake_background_cube: #1f497d;
-$burger_btn_menu_active: white;
+$burger_btn_menu_active: $btn_base_color;
 $burger_btn_menu_base: #5fcaa1;
-$background_content_burger_menu: #337ab7;
+$background_content_burger_menu: $app_base_color;
+$background_btns: $app_base_color;
+$btns_title_color: $btn_base_color;
+$display_title_color: $btn_base_color;

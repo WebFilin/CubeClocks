@@ -147,7 +147,9 @@ const PomadoroTimer = observer(() => {
         {isBreakTitle && "Break!"}
       </div>
 
-      <DisplayDrawing displType="clock" />
+      <div className={styles.display_wrapper}>
+        <DisplayDrawing />
+      </div>
 
       <div className={styles.btns_wrapper}>
         <Btn funcClick={handllerStart} title={btnTitle} />

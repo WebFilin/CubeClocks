@@ -1,9 +1,12 @@
+import React from "react";
 import styles from "./Checkbox.module.scss";
 import store from "../../../../store/store";
 
-function Checkbox({ isChecked, value }) {
-  function handler(elem) {
-    const { name, type } = elem;
+// eslint-disable-next-line react/display-name
+const Checkbox = React.memo(({ isChecked, value }) => {
+  function handlerClick() {
+    const { name, type } = value;
+
     store.handlerValueChecked(name, type);
   }
 
@@ -14,12 +17,12 @@ function Checkbox({ isChecked, value }) {
           className={styles.custom_checkbox}
           type="checkbox"
           checked={isChecked}
-          onChange={() => handler(value)}
+          onChange={handlerClick}
         />
         <span className={styles.title}> {value.name}</span>
       </label>
     </div>
   );
-}
+});
 
 export default Checkbox;

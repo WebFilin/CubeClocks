@@ -5,6 +5,7 @@ import InputDropList from "../UI/InputDropList";
 import store from "../../store/store";
 
 const InputTimeWraper = observer(() => {
+  const isReset = store.isReset;
   const { name, type } = store.checkedTimeValue;
 
   function handlerData(value) {
@@ -25,7 +26,7 @@ const InputTimeWraper = observer(() => {
         <CheckboxTimeValue />
 
         <div className={styles.inputs_wrapper}>
-          {!store.isReset && (
+          {!isReset && (
             <>
               {type !== "date and time" && (
                 <>

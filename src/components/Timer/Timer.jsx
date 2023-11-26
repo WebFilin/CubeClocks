@@ -16,7 +16,8 @@ const Timer = observer(() => {
   const isStart = store.isStart;
 
   React.useEffect(() => {
-    store.handlerReset();
+    store.setValuesTime(0, 0, 0, 0);
+    store.handlerdisplayVisability(true, true, true);
   }, []);
 
   React.useEffect(() => {
@@ -42,6 +43,7 @@ const Timer = observer(() => {
       <div className={styles.input_wrapper}>
         <InputTimeWraper />
       </div>
+
       <div className={styles.btns_wrapper}>
         <Btn funcClick={handllerStart} title={btnTitle} />
         <Btn funcClick={handlerRest} title="Reset" />

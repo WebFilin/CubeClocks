@@ -96,12 +96,20 @@
   .body {
     width: 75vw;
   }
+
+  .blur {
+    display: none;
+  }
 }
 
 /* Portrait phones and smaller */
 @media (max-width: 480px) {
   .body {
     width: 100vw;
+  }
+
+  .blur {
+    display: none;
   }
 }
 /* Iphone 5 */

@@ -1,3 +1,5 @@
+@import "../../constants/scss/constants.scss";
+
 .wrapper {
   display: flex;
   flex-direction: column;
@@ -18,8 +20,8 @@
 
 .title_display {
   text-transform: uppercase;
-  text-shadow: 0px 0px 1px black;
   margin-top: 15px;
+  color: $display_title_color;
 }
 
 /* Portrait phones and smaller */

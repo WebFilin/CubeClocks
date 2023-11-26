@@ -7,6 +7,7 @@ import { observer } from "mobx-react-lite";
 const InputDropList = observer(({ title, type, handlerInputValue }) => {
   const [inputValue, setInputValue] = React.useState("");
 
+
   function clearValue() {
     if (inputValue) {
       store.setValueDateOrTime("", "");
