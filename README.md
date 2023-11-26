@@ -1,6 +1,6 @@
-![img](https://github.com/WebFilin/MarconiRadio/blob/main/ScreenShots/radio.png)
+![img](https://raw.githubusercontent.com/WebFilin/CubeClocks/b8d25fcff27386a2859868bbae9601c59d3becf4/screenshots/2023-11-26_17-13-42.png)
 
-# Cube Clock
+# Cube Clocks
 
 - Небольшой проект часов сделанных по принципу управления сегментным табло
 - Показывает текущие время
